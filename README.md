@@ -125,76 +125,72 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController  
-// ye ek aisa annotation hai jo REST API ke liye required sabhi methods
-// ko handle karta hai. Ye REST API create karne me help karta hai
-// jaise: insert, update, delete, select
+@RestController
+// ye annotation REST API ke liye required sabhi methods
+// ko handle karta hai jaise insert, update, delete aur select
 public class KurreControler {
 
-	@Autowired    
-	// @Autowired automatically repository ko inject karta hai,
-	// jisse hum database me data get, save, update aur delete
-	// jaise operations kar sakte hain
+	@Autowired
+	// @Autowired repository ko automatically inject karta hai,
+	// jisse database operations perform kar sakte hain
 	private Kurrerepo repo;
 
-	 // ---------------------- READ ALL ------------------------
-	@GetMapping("/kurre")       //@GetMapping data select karo
-    public List<Kurre> findAllBg(){
-   	 List<Kurre> list = repo.findAll();
-   	 return list;
-    }
-	// ---------------------- CREATE (INSERT)commen method -----------------
-    @PostMapping("/savekurre")
-    public Kurre savekurre(@RequestBody Kurre s) {
-        return repo.save(s);
-    }
-    //-------------------response method---------------------------------------
-    @PostMapping("/savekurr")
-    public Object savekurr(@RequestBody Kurre s) {
-        repo.save(s);
-        Map<String, Object> response = new HashMap<>();
-        response.put("status",  200);
-        response.put("Message", "Record Save sucessfully...!!!");
-        return response;
-    }
-    // ---------------------- UPDATE --------------------------
-    @PutMapping("/updatekurre")
-    public Kurre updateKurre(@RequestBody Kurre p) {
-         return repo.save(p);
-    }
-    //-------------------response method---------------------------------------  
-    @PutMapping("/updatekurr")
-    public Object updateKurr(@RequestBody Kurre p) {
-          repo.save(p);
-          Map<String, Object> response = new HashMap<>();
-          response.put("status",  200);
-          response.put("Message", "Record Update sucessfully...!!!");
-          return response;
-    }
-    // ---------------------- DELETE --------------------------
-    @DeleteMapping("/deletekurre/{id}")
-    public String deleteKurre(@PathVariable int id) {
-        repo.deleteById(id);
-        return "Record Deleted Successfully ID = " + id;
-    }
-    //-------------------response method--------------------------------------- 
-    @DeleteMapping("/deletekurr/{id}")
-    public Object deleteKurr(@PathVariable int id) {
-        repo.deleteById(id);
-        Map<String, Object> response = new HashMap<>();
-        response.put("status",  200);
-        response.put("Message", "Record Delete sucessfully...!!!");
-        return response;
-    }
+	// ---------------------- READ ALL ------------------------
+	@GetMapping("/kurre")
+	public List<Kurre> findAllBg() {
+		return repo.findAll();
+	}
 
+	// ---------------------- CREATE (COMMON METHOD) ----------
+	@PostMapping("/savekurre")
+	public Kurre savekurre(@RequestBody Kurre s) {
+		return repo.save(s);
+	}
+
+	// ---------------------- CREATE (RESPONSE METHOD) --------
+	@PostMapping("/savekurr")
+	public Object savekurr(@RequestBody Kurre s) {
+		repo.save(s);
+		Map<String, Object> response = new HashMap<>();
+		response.put("status", 200);
+		response.put("message", "Record saved successfully");
+		return response;
+	}
+
+	// ---------------------- UPDATE --------------------------
+	@PutMapping("/updatekurre")
+	public Kurre updateKurre(@RequestBody Kurre p) {
+		return repo.save(p);
+	}
+
+	// ---------------------- UPDATE (RESPONSE METHOD) --------
+	@PutMapping("/updatekurr")
+	public Object updateKurr(@RequestBody Kurre p) {
+		repo.save(p);
+		Map<String, Object> response = new HashMap<>();
+		response.put("status", 200);
+		response.put("message", "Record updated successfully");
+		return response;
+	}
+
+	// ---------------------- DELETE --------------------------
+	@DeleteMapping("/deletekurre/{id}")
+	public String deleteKurre(@PathVariable int id) {
+		repo.deleteById(id);
+		return "Record Deleted Successfully ID = " + id;
+	}
+
+	// ---------------------- DELETE (RESPONSE METHOD) --------
+	@DeleteMapping("/deletekurr/{id}")
+	public Object deleteKurr(@PathVariable int id) {
+		repo.deleteById(id);
+		Map<String, Object> response = new HashMap<>();
+		response.put("status", 200);
+		response.put("message", "Record deleted successfully");
+		return response;
+	}
 }
 
 ```
