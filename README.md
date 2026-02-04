@@ -32,7 +32,6 @@ KCAPI
 │       ├── Kurre.java
 │       ├── Kurrerepo.java
 │       └── KurreControler.java
-│
 ├── src/main/resources
 │   └── application.properties
 └── pom.xml
