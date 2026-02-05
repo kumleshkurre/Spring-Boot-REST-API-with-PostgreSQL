@@ -24,7 +24,7 @@ A professional Spring Boot RESTful API project built using Spring Data JPA, Post
 
 
 ## 📂 Project Structure
-```
+```js
 KCAPI
 ├── src/main/java
 │   └── kumlesh
@@ -54,7 +54,7 @@ KCAPI
 
 ## 🗄️ Database Configuration
 src/main/resources/application.properties
-```
+```js
 spring.application.name=kurrecomputers
 spring.datasource.url=jdbc:postgresql://localhost:5432/your_database_name
 spring.datasource.username=your_username
@@ -68,7 +68,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 ```
 
 ## ▶️ Application Entry Point
-```
+```js
 
 package kumlesh;
 
@@ -91,7 +91,7 @@ Run the project using: Run As → Spring Boot App
 ## 🧱 Entity Layer (Model)
 @Entity
 public class Kurre {
-```
+```js
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -102,7 +102,7 @@ public class Kurre {
 }
 ```
 ## 📦 Repository Layer
-```
+```js
 package kumlesh;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -116,7 +116,7 @@ public interface Kurrerepo extends JpaRepository<Kurre, Integer> {
 }
 ```
 ## 🎮 Controller Layer
-```
+```js
 package kumlesh;
 
 import java.util.HashMap;
@@ -199,7 +199,7 @@ GET /kurre
 
 🔹 Insert Record
 POST /savekurre
-```
+```js
 {
   "name": "test",
   "mobile": "1234567890"
@@ -207,7 +207,7 @@ POST /savekurre
 ```
 🔹 Update Record
 PUT /updatekurre
-```
+```js
 {
   "id": 2,
   "name": "sahil",
